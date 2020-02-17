@@ -1,29 +1,38 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
+import SavedList from './SavedList';
 
-const MovieCard = ({ movie }) => {
-  console.log('movie', movie)
+function MovieCard(props){
+  // console.log('MovieCardprops', props)
+  const { title, director, metascore, stars } = props.movie;
+
+
+  const renderSaveButton = ()=> {
+    if(props.renSav){ return (
+      <div /*onClick = {() => props.saveMovie()}*/ className="save-button">Save</div>
+    )}
+  }
   // console.log('movies', movies)
 
-  // const { title, director, metascore, stars } = movie;
+  
   return (
-      <NavLink to={`/movies/${movie.id}`} >
-        
+      <NavLink to={`/movies/${props.movie.id}`} >
         <div className="movie-card">
-        <h2>{movie.title}</h2>
+        <h2>{title}</h2>
         <div className="movie-director">
-          Director: <em>{movie.director}</em>
+          Director: <em>{director}</em>
         </div>
         <div className="movie-metascore">
-          Metascore: <strong>{movie.metascore}</strong>
+          Metascore: <strong>{metascore}</strong>
         </div>
         <h3>Actors</h3>
 
-        {movie.stars.map(star => (
-          <div key={movie.star} className="movie-star">
+        {stars.map(star => (
+          <div key={star} className="movie-star">
             {star}
           </div>
         ))}
+        {renderSaveButton()}
         </div>
         
       </NavLink> 
