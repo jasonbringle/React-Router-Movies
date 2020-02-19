@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import MovieCard from './MovieCard'
+import MovieCard from './MovieCard';
 
 const Movie = (props) => {
   const [movie, setMovie] = useState();
@@ -23,17 +23,19 @@ const Movie = (props) => {
   
   // Uncomment this only when you have moved on to the stretch goals
   const saveMovie = () => {
-    const addToSavedList = props.addToSavedList;
+    const addToSavedList = props.save;
     addToSavedList(movie)
   }
   if (!movie) {
     return <div>Loading movie information...</div>;
   }
 
-  // const { title, director, metascore, stars } = movie;
+  const { title, director, metascore, stars } = movie;
   return (
-    <MovieCard key={movie.id} movie={movie} saveMovie={saveMovie} renSav= {true}/>
-    
+    <div className="save-wrapper">
+      <MovieCard title = {title} director = {director} metascore = {metascore} stars = {stars} />
+      <button  className="save-button" onClick = {() => saveMovie()}>Save</button>
+    </div>
   );
 }
 

@@ -1,22 +1,14 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
-import SavedList from './SavedList';
 
 function MovieCard(props){
-  // console.log('MovieCardprops', props)
-  const { title, director, metascore, stars } = props.movie;
+  const { title, director, metascore, stars } = props;
 
 
-  const renderSaveButton = ()=> {
-    if(props.renSav){ return (
-      <div /*onClick = {() => props.saveMovie()}*/ className="save-button">Save</div>
-    )}
-  }
-  // console.log('movies', movies)
+  
 
   
   return (
-      <NavLink to={`/movies/${props.movie.id}`} >
+      // <NavLink to={`/movies/${props.movie.id}`} >
         <div className="movie-card">
         <h2>{title}</h2>
         <div className="movie-director">
@@ -32,10 +24,9 @@ function MovieCard(props){
             {star}
           </div>
         ))}
-        {renderSaveButton()}
         </div>
         
-      </NavLink> 
+      // </NavLink> 
   );
 }
 export default MovieCard;
